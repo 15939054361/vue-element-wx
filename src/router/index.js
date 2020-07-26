@@ -234,12 +234,12 @@ export const permissionRoutes = [{
     label: "用户",
     path: '/user',
     name: 'user',
-    id:"1",
+    id: "1",
     component: Layout,
     redirect: "/user/user-list",
     meta: { title: '用户' },
     children: [{
-      id:"1-1",
+      id: "1-1",
       label: "用户列表",
       path: "user-list",
       name: "user-list",
@@ -262,12 +262,12 @@ export const permissionRoutes = [{
     label: "步数",
     path: '/step',
     name: 'step',
-    id:"2",
+    id: "2",
     component: Layout,
     redirect: "/step/step-list",
     meta: { title: '运动' },
     children: [{
-      id:"2-1",
+      id: "2-1",
       label: "运动步数列表",
       path: "step-list",
       name: "step-list",
@@ -285,9 +285,9 @@ export const permissionRoutes = [{
     component: Layout,
     redirect: "/admin/admin-list",
     meta: { title: '管理员' },
-    id:"3",
+    id: "3",
     children: [{
-      id:"3-1",
+      id: "3-1",
       label: "创建管理员",
       path: "admin-create",
       name: "admin-create",
@@ -296,7 +296,7 @@ export const permissionRoutes = [{
       },
       component: () => import("@/views/admin/create/index")
     }, {
-      id:"3-2",
+      id: "3-2",
       label: "管理员列表",
       path: "admin-list",
       name: "admin-list",
@@ -310,12 +310,12 @@ export const permissionRoutes = [{
     label: "测试",
     path: '/admin',
     name: 'admin',
-    id:"4",
+    id: "4",
     component: Layout,
     redirect: "/admin/admin-list",
     meta: { title: '管理员' },
     children: [{
-      id:"4-1",
+      id: "4-1",
       label: "测试-1",
       path: "admin-create",
       name: "admin-create",
@@ -324,7 +324,7 @@ export const permissionRoutes = [{
       },
       component: () => import("@/views/admin/create/index")
     }, {
-      id:"4-2",
+      id: "4-2",
       label: "测试-2",
       path: "admin-list",
       name: "admin-list",
@@ -333,8 +333,8 @@ export const permissionRoutes = [{
       },
       component: () => import("@/views/admin/list/index"),
       children: [{
-        id:"4-2-1",
-        label: "测试-2-1",
+        id: "4-2-1",
+        label: "4-2-1",
         path: "admin-list-1",
         name: "admin-list-1",
         meta: {
@@ -342,7 +342,7 @@ export const permissionRoutes = [{
         },
         component: () => import("@/views/admin/create/index")
       }, {
-        id:"4-2-2",
+        id: "4-2-2",
         label: "测试-2-2",
         path: "admin-list-2",
         name: "admin-list-2",
@@ -351,7 +351,7 @@ export const permissionRoutes = [{
         },
         component: () => import("@/views/admin/list/index")
 
-      }, ]
+      }]
     }, ]
   }
 ]

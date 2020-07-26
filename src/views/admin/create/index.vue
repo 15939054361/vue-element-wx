@@ -36,9 +36,9 @@
       <!-- 展示 -->
       <el-col :span="12">
         <el-card header="数据展示">
-           <el-tree :data="checkRoute" :props="defaultProps" ref="tree-2"></el-tree>
+          <el-tree :data="checkRoute" :props="defaultProps" ref="tree-2"></el-tree>
         </el-card>
-       
+
       </el-col>
     </el-row>
   </div>
@@ -73,8 +73,8 @@
         },
         saveTrees: [],
         parentNode: "",
-        checkRoute: []
-
+        checkRoute: [],
+        permissionRoutes
       };
     },
     computed: {
@@ -85,7 +85,10 @@
     },
     created() {
       noderoutes = this.trees = this.generateRouter(permissionRoutes);
-      // console.log(this.trees)
+      console.log("permissionRoutes==>", permissionRoutes)
+      setTimeout(() => {
+        console.log("permissionRoutes==>", permissionRoutes)
+      }, 5000);
     },
     mounted() {
 
@@ -124,6 +127,7 @@
 
       // 最终获取所有选中路由的数组
       getCheckedNodes() {
+        // this.permissionRoutes = impor
         if (!this.parentNode) {
           return
         }
@@ -132,10 +136,35 @@
 
         if (this.parentNode.childNodes.filter(item => item.checked === false).length === 0) {
           this.checkRoute = this.trees
+          console.log(this.get(this.checkRoute, this.permissionRoutes))
         } else {
-          console.log("childNodes===>", this.generateCheckRouter(childNodes))
-          this.checkRoute = this.generateCheckRouter(childNodes)
+          this.checkRoute = this.generateCheckRouter(childNodes);
+
+          console.log(this.get(this.checkRoute, this.permissionRoutes))
         }
+
+      },
+
+      get(route, permission) {
+        let arr = [];
+        let flag = false
+        for (let index = 0; index < route.length; index++) {
+          const element = route[index];
+          const res = permission.find(per_item => per_item.id === element.id);
+          if (res && res.children) {
+            // if (flag) {
+            //   res.children.push(this.get(element.children, res.children))
+            // } else {
+            //   res.children = this.get(element.children, res.children)
+            // }
+            res.children = this.get(element.children, res.children)
+            // flag = true;
+          }
+          if (res) {
+            arr.push(res)
+          }
+        }
+        return arr;
 
       },
 
@@ -200,7 +229,7 @@
         let newArr = [];
 
         arr.forEach((item, index) => {
-        
+
           if (item.checked || this.getBoolean(item.childNodes)) {
 
             let params = {
@@ -227,10 +256,10 @@
           const element = array[index];
 
           if (element.checked) {
-           return flag = true
+            return flag = true
           }
           if (element.childNodes.length > 0) {
-             flag = this.getBoolean(element.childNodes)
+            flag = this.getBoolean(element.childNodes)
           } else {
             continue
           }
