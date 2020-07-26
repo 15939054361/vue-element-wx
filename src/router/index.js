@@ -30,8 +30,7 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
-  {
+export const constantRoutes = [{
     label: "登录",
     path: '/login',
     component: () => import('@/views/login/index'),
@@ -65,26 +64,25 @@ export const constantRoutes = [
     redirect: '/example/table',
     name: 'Example',
     meta: { title: 'Example', icon: 'el-icon-s-help' },
-    children: [
-    {
-      path: 'table',
-      name: 'Table',
-      component: () => import('@/views/table/index'),
-      meta: { title: 'Table', icon: 'table' }
-    },
-    {
-      path: 'tree',
-      name: 'Tree',
-      component: () => import('@/views/tree/index'),
-      meta: { title: 'Tree', icon: 'tree' }
-    }]
+    children: [{
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/table/index'),
+        meta: { title: 'Table', icon: 'table' }
+      },
+      {
+        path: 'tree',
+        name: 'Tree',
+        component: () => import('@/views/tree/index'),
+        meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
   },
 
   {
     path: '/form',
     component: Layout,
-    children: [
-    {
+    children: [{
       path: 'index',
       name: 'Form',
       component: () => import('@/views/form/index'),
@@ -101,58 +99,57 @@ export const constantRoutes = [
       title: 'Nested',
       icon: 'nested'
     },
-    children: [
-    {
-      path: 'menu1',
-      component: () => import('@/views/nested/menu1/index'), // Parent router-view
-      name: 'Menu1',
-      meta: { title: 'Menu1' },
-      children: [
-      {
-        path: 'menu1-1',
-        component: () => import('@/views/nested/menu1/menu1-1'),
-        name: 'Menu1-1',
-        meta: { title: 'Menu1-1' }
+    children: [{
+        path: 'menu1',
+        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        name: 'Menu1',
+        meta: { title: 'Menu1' },
+        children: [{
+            path: 'menu1-1',
+            component: () => import('@/views/nested/menu1/menu1-1'),
+            name: 'Menu1-1',
+            meta: { title: 'Menu1-1' }
+          },
+          {
+            path: 'menu1-2',
+            component: () => import('@/views/nested/menu1/menu1-2'),
+            name: 'Menu1-2',
+            meta: { title: 'Menu1-2' },
+            children: [{
+                path: 'menu1-2-1',
+                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                name: 'Menu1-2-1',
+                meta: { title: 'Menu1-2-1' }
+              },
+              {
+                path: 'menu1-2-2',
+                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                name: 'Menu1-2-2',
+                meta: { title: 'Menu1-2-2' }
+              }
+            ]
+          },
+          {
+            path: 'menu1-3',
+            component: () => import('@/views/nested/menu1/menu1-3'),
+            name: 'Menu1-3',
+            meta: { title: 'Menu1-3' }
+          }
+        ]
       },
       {
-        path: 'menu1-2',
-        component: () => import('@/views/nested/menu1/menu1-2'),
-        name: 'Menu1-2',
-        meta: { title: 'Menu1-2' },
-        children: [
-        {
-          path: 'menu1-2-1',
-          component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-          name: 'Menu1-2-1',
-          meta: { title: 'Menu1-2-1' }
-        },
-        {
-          path: 'menu1-2-2',
-          component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-          name: 'Menu1-2-2',
-          meta: { title: 'Menu1-2-2' }
-        }]
-      },
-      {
-        path: 'menu1-3',
-        component: () => import('@/views/nested/menu1/menu1-3'),
-        name: 'Menu1-3',
-        meta: { title: 'Menu1-3' }
-      }]
-    },
-    {
-      path: 'menu2',
-      component: () => import('@/views/nested/menu2/index'),
-      name: 'Menu2',
-      meta: { title: 'menu2' }
-    }]
+        path: 'menu2',
+        component: () => import('@/views/nested/menu2/index'),
+        name: 'Menu2',
+        meta: { title: 'menu2' }
+      }
+    ]
   },
 
   {
     path: 'external-link',
     component: Layout,
-    children: [
-    {
+    children: [{
       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
       meta: { title: 'External Link', icon: 'link' }
     }]
@@ -199,7 +196,7 @@ export const constantRoutes = [
         title: "运动步数列表"
       },
       component: () => import("@/views/step/list/index"),
-     
+
     }]
   },
 
@@ -210,8 +207,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: "/admin/admin-list",
     meta: { title: '管理员' },
-    children: [
-    {
+    children: [{
       label: "创建管理员",
       path: "admin-create",
       name: "admin-create",
@@ -238,10 +234,12 @@ export const permissionRoutes = [{
     label: "用户",
     path: '/user',
     name: 'user',
+    id:"1",
     component: Layout,
     redirect: "/user/user-list",
     meta: { title: '用户' },
     children: [{
+      id:"1-1",
       label: "用户列表",
       path: "user-list",
       name: "user-list",
@@ -264,10 +262,12 @@ export const permissionRoutes = [{
     label: "步数",
     path: '/step',
     name: 'step',
+    id:"2",
     component: Layout,
     redirect: "/step/step-list",
     meta: { title: '运动' },
     children: [{
+      id:"2-1",
       label: "运动步数列表",
       path: "step-list",
       name: "step-list",
@@ -285,8 +285,9 @@ export const permissionRoutes = [{
     component: Layout,
     redirect: "/admin/admin-list",
     meta: { title: '管理员' },
-    children: [
-    {
+    id:"3",
+    children: [{
+      id:"3-1",
       label: "创建管理员",
       path: "admin-create",
       name: "admin-create",
@@ -295,6 +296,7 @@ export const permissionRoutes = [{
       },
       component: () => import("@/views/admin/create/index")
     }, {
+      id:"3-2",
       label: "管理员列表",
       path: "admin-list",
       name: "admin-list",
@@ -302,6 +304,54 @@ export const permissionRoutes = [{
         title: "管理员列表"
       },
       component: () => import("@/views/admin/list/index")
+    }, ]
+  },
+  {
+    label: "测试",
+    path: '/admin',
+    name: 'admin',
+    id:"4",
+    component: Layout,
+    redirect: "/admin/admin-list",
+    meta: { title: '管理员' },
+    children: [{
+      id:"4-1",
+      label: "测试-1",
+      path: "admin-create",
+      name: "admin-create",
+      meta: {
+        title: "创建管理员"
+      },
+      component: () => import("@/views/admin/create/index")
+    }, {
+      id:"4-2",
+      label: "测试-2",
+      path: "admin-list",
+      name: "admin-list",
+      meta: {
+        title: "管理员列表"
+      },
+      component: () => import("@/views/admin/list/index"),
+      children: [{
+        id:"4-2-1",
+        label: "测试-2-1",
+        path: "admin-list-1",
+        name: "admin-list-1",
+        meta: {
+          title: "创建管理员"
+        },
+        component: () => import("@/views/admin/create/index")
+      }, {
+        id:"4-2-2",
+        label: "测试-2-2",
+        path: "admin-list-2",
+        name: "admin-list-2",
+        meta: {
+          title: "管理员列表"
+        },
+        component: () => import("@/views/admin/list/index")
+
+      }, ]
     }, ]
   }
 ]
