@@ -8,7 +8,8 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
-    id: ""
+    id: "",
+    routes:[]
   }
 }
 
@@ -29,6 +30,9 @@ const mutations = {
   },
   SET_ID: (state, id) => {
     state.id = id
+  },
+  SET_ROUTES: (state, routes) => {
+    state.routes = routes
   }
 }
 
@@ -36,6 +40,7 @@ const actions = {
   // user login
   login({ commit }, userInfo) {
     const { username, password } = userInfo
+    console.log(username)
     return new Promise((resolve, reject) => {
       login({ user: username.trim(), passWord: password }).then(response => {
         const { data } = response
@@ -57,9 +62,10 @@ const actions = {
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
-        const { avatar, nickName } = data
+        const { avatar, nickName,routes } = data
         commit('SET_NAME', nickName)
         commit('SET_AVATAR', avatar)
+        commit('SET_ROUTES', routes)
         resolve(data)
       }).catch(error => {
         reject(error)

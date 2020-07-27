@@ -153,81 +153,7 @@ export const constantRoutes = [{
       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
       meta: { title: 'External Link', icon: 'link' }
     }]
-  },
-  {
-    label: "用户",
-    path: '/user',
-    name: 'user',
-    component: Layout,
-    redirect: "/user/user-list",
-    meta: { title: '用户' },
-    children: [{
-      label: "用户列表",
-      path: "user-list",
-      name: "user-list",
-      meta: {
-        title: "用户列表"
-      },
-      component: () => import("@/views/user/list/index"),
-
-    }]
-    /*  {
-       path: "user-create",
-       name: "user-create",
-       meta: {
-         title: "创建列表"
-       },
-       component: () => import("@/views/user/list/index")
-     } */
-  },
-
-  {
-    label: "步数",
-    path: '/step',
-    name: 'step',
-    component: Layout,
-    redirect: "/step/step-list",
-    meta: { title: '运动' },
-    children: [{
-      label: "运动步数列表",
-      path: "step-list",
-      name: "step-list",
-      meta: {
-        title: "运动步数列表"
-      },
-      component: () => import("@/views/step/list/index"),
-
-    }]
-  },
-
-  {
-    label: "管理员",
-    path: '/admin',
-    name: 'admin',
-    component: Layout,
-    redirect: "/admin/admin-list",
-    meta: { title: '管理员' },
-    children: [{
-      label: "创建管理员",
-      path: "admin-create",
-      name: "admin-create",
-      meta: {
-        title: "创建管理员"
-      },
-      component: () => import("@/views/admin/create/index")
-    }, {
-      label: "管理员列表",
-      path: "admin-list",
-      name: "admin-list",
-      meta: {
-        title: "管理员列表"
-      },
-      component: () => import("@/views/admin/list/index")
-    }, ]
-  },
-
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  }
 ]
 
 export const permissionRoutes = [{
@@ -308,12 +234,12 @@ export const permissionRoutes = [{
   },
   {
     label: "测试",
-    path: '/admin',
-    name: 'admin',
+    path: '/test',
+    name: 'test',
     id: "4",
     component: Layout,
-    redirect: "/admin/admin-list",
-    meta: { title: '管理员' },
+    redirect: "/test/admin-list",
+    meta: { title: '测试管理员-只做展示' },
     children: [{
       id: "4-1",
       label: "测试-1",
@@ -326,8 +252,8 @@ export const permissionRoutes = [{
     }, {
       id: "4-2",
       label: "测试-2",
-      path: "admin-list",
-      name: "admin-list",
+      path: "test-list",
+      name: "test-list",
       meta: {
         title: "管理员列表"
       },

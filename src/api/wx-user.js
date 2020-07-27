@@ -7,3 +7,11 @@ export function list(data) {
     data
   })
 }
+
+export function register(data) {
+  return request({
+    url: '/admin/user/add',
+    method: 'POST',
+    data
+  })
+}

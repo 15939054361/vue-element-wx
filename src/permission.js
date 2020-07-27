@@ -28,26 +28,21 @@ router.beforeEach(async (to, from, next) => {
     } else {
 
       const hasGetUserInfo = store.getters.name;
-
+      console.log(hasGetUserInfo)
       if (hasGetUserInfo) {
-
-       /*  const { roles } = this.$store.getters.userInfo
-
-        const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
-
-        router.addRoutes(accessRoutes) */
-
+        const routes = store.getters.routes
+        const accessRoutes = await store.dispatch('permission/generateRoutes', routes)
+        router.addRoutes(accessRoutes || [])
         next()
       } else {
+        console.log("走了")
         try {
           // get user info
-          const { roles } = await store.dispatch('user/getInfo')
-
-          // const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
-
-          // router.addRoutes(accessRoutes)
-          
-          next()
+          const { routes } = await store.dispatch('user/getInfo')
+          console.log(routes)
+          const accessRoutes = await store.dispatch('permission/generateRoutes', routes)
+          router.addRoutes(accessRoutes)
+          next({ path: "/", replace: true })
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
