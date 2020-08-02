@@ -4,7 +4,7 @@
       <el-col :span="12">
         <el-card>
           <div slot="header" class="clearfix">
-            <span>创建管理员</span>
+            <span>创建管理员(请注意选择权限)</span>
           </div>
           <el-form
             ref="ruleForm"
@@ -39,7 +39,7 @@
                   :show-checkbox="true"
                   ref="tree"
                 ></el-tree>
-                <el-button style="margin-top:20px" size="mini" @click="getCheckedNodes">保存</el-button>
+                <el-button style="margin-top:20px" type="danger"  size="mini" @click="getCheckedNodes">保存权限</el-button>
               </el-collapse-item>
             </el-collapse>
             <el-form-item label-width="40px">
@@ -56,7 +56,7 @@
 
       <!-- 展示 -->
       <el-col :span="12">
-        <el-card header="数据展示">
+        <el-card header="权限展示">
           <el-tree :data="checkRoute" :props="defaultProps" ref="tree-2"></el-tree>
         </el-card>
       </el-col>

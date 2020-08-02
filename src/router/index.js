@@ -63,18 +63,36 @@ export const constantRoutes = [{
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    meta: { title: '列表展示', icon: 'el-icon-s-help' },
     children: [{
         path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        name: 'example-Table',
+        component: () => import('@/views/merchant/index'),
+        meta: { title: '商家列表', icon: 'tree' }
       },
       {
         path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        name: 'example-Tree',
+        component: () => import('@/views/userList/index'),
+        meta: { title: '用户列表', icon: 'tree' }
+      },
+      {
+        path: 'food',
+        name: 'example-food',
+        component: () => import('@/views/foodList/index'),
+        meta: { title: '食品列表', icon: 'tree' }
+      },
+      {
+        path: 'order',
+        name: 'example-order',
+        component: () => import('@/views/orderList/index'),
+        meta: { title: '订单列表', icon: 'tree' }
+      },
+      {
+        path: 'admin',
+        name: 'example-admin',
+        component: () => import('@/views/adminList/index'),
+        meta: { title: '管理员列表', icon: 'tree' }
       }
     ]
   },
@@ -82,12 +100,18 @@ export const constantRoutes = [{
   {
     path: '/form',
     component: Layout,
+    meta: { title: '添加数据', icon: 'list-item' },
     children: [{
-      path: 'index',
-      name: 'Form',
-      component: () => import('@/views/form/index'),
-      meta: { title: 'Form', icon: 'form' }
-    }]
+      name: 'addStore',
+      path: 'addStore',
+      component: () => import('@/views/addStore/index'),
+      meta: { title: '添加店铺', icon: 'form' },
+    },{
+      name: 'addProduce',
+      path: 'addProduce',
+      component: () => import('@/views/addProduce/index'),
+      meta: { title: '添加商品', icon: 'form' },
+  },]
   },
 
   {
@@ -150,67 +174,20 @@ export const constantRoutes = [{
     path: 'external-link',
     component: Layout,
     children: [{
-      path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+      path: 'https://github.com/15939054361/vue-element-wx',
       meta: { title: 'External Link', icon: 'link' }
     }]
   }
 ]
 
-export const permissionRoutes = [{
-    label: "用户",
-    path: '/user',
-    name: 'user',
-    id: "1",
-    component: Layout,
-    redirect: "/user/user-list",
-    meta: { title: '用户' },
-    children: [{
-      id: "1-1",
-      label: "用户列表",
-      path: "user-list",
-      name: "user-list",
-      meta: {
-        title: "用户列表"
-      },
-      component: () => import("@/views/user/list/index")
-    }]
-    /*  {
-       path: "user-create",
-       name: "user-create",
-       meta: {
-         title: "创建列表"
-       },
-       component: () => import("@/views/user/list/index")
-     } */
-  },
-
-  {
-    label: "步数",
-    path: '/step',
-    name: 'step',
-    id: "2",
-    component: Layout,
-    redirect: "/step/step-list",
-    meta: { title: '运动' },
-    children: [{
-      id: "2-1",
-      label: "运动步数列表",
-      path: "step-list",
-      name: "step-list",
-      meta: {
-        title: "运动步数列表"
-      },
-      component: () => import("@/views/step/list/index")
-    }]
-  },
-
+export const permissionRoutes = [
   {
     label: "管理员",
     path: '/admin',
     name: 'admin',
     component: Layout,
     redirect: "/admin/admin-list",
-    meta: { title: '管理员' },
+    meta: { title: '管理员' ,icon:"admin"},
     id: "3",
     children: [{
       id: "3-1",
@@ -218,7 +195,7 @@ export const permissionRoutes = [{
       path: "admin-create",
       name: "admin-create",
       meta: {
-        title: "创建管理员"
+        title: "创建管理员",icon:"admin-create"
       },
       component: () => import("@/views/admin/create/index")
     }, {
@@ -227,60 +204,108 @@ export const permissionRoutes = [{
       path: "admin-list",
       name: "admin-list",
       meta: {
-        title: "管理员列表"
+        title: "管理员列表",icon:"admin-list"
       },
       component: () => import("@/views/admin/list/index")
     }, ]
   },
-  {
-    label: "测试",
-    path: '/test',
-    name: 'test',
-    id: "4",
-    component: Layout,
-    redirect: "/test/admin-list",
-    meta: { title: '测试管理员-只做展示' },
-    children: [{
-      id: "4-1",
-      label: "测试-1",
-      path: "admin-create",
-      name: "admin-create",
-      meta: {
-        title: "创建管理员"
-      },
-      component: () => import("@/views/admin/create/index")
-    }, {
-      id: "4-2",
-      label: "测试-2",
-      path: "test-list",
-      name: "test-list",
-      meta: {
-        title: "管理员列表"
-      },
-      component: () => import("@/views/admin/list/index"),
-      children: [{
-        id: "4-2-1",
-        label: "4-2-1",
-        path: "admin-list-1",
-        name: "admin-list-1",
-        meta: {
-          title: "创建管理员"
-        },
-        component: () => import("@/views/admin/create/index")
-      }, {
-        id: "4-2-2",
-        label: "测试-2-2",
-        path: "admin-list-2",
-        name: "admin-list-2",
-        meta: {
-          title: "管理员列表"
-        },
-        component: () => import("@/views/admin/list/index")
-
-      }]
-    }, ]
-  }
+ 
 ]
+// {
+//   label: "测试",
+//   path: '/test',
+//   name: 'test',
+//   id: "4",
+//   component: Layout,
+//   redirect: "/test/admin-list",
+//   meta: { title: '测试管理员-只做展示' },
+//   children: [{
+//     id: "4-1",
+//     label: "测试-1",
+//     path: "admin-create",
+//     name: "admin-create",
+//     meta: {
+//       title: "创建管理员"
+//     },
+//     component: () => import("@/views/admin/create/index")
+//   }, {
+//     id: "4-2",
+//     label: "测试-2",
+//     path: "test-list",
+//     name: "test-list",
+//     meta: {
+//       title: "管理员列表"
+//     },
+//     component: () => import("@/views/admin/list/index"),
+//     children: [{
+//       id: "4-2-1",
+//       label: "4-2-1",
+//       path: "admin-list-1",
+//       name: "admin-list-1",
+//       meta: {
+//         title: "创建管理员"
+//       },
+//       component: () => import("@/views/admin/create/index")
+//     }, {
+//       id: "4-2-2",
+//       label: "测试-2-2",
+//       path: "admin-list-2",
+//       name: "admin-list-2",
+//       meta: {
+//         title: "管理员列表"
+//       },
+//       component: () => import("@/views/admin/list/index")
+
+//     }]
+//   }, ]
+// }
+// {
+//   label: "用户",
+//   path: '/user',
+//   name: 'user',
+//   id: "1",
+//   component: Layout,
+//   redirect: "/user/user-list",
+//   meta: { title: '用户' },
+//   children: [{
+//     id: "1-1",
+//     label: "用户列表",
+//     path: "user-list",
+//     name: "user-list",
+//     meta: {
+//       title: "用户列表"
+//     },
+//     component: () => import("@/views/user/list/index")
+//   }]
+//   /*  {
+//      path: "user-create",
+//      name: "user-create",
+//      meta: {
+//        title: "创建列表"
+//      },
+//      component: () => import("@/views/user/list/index")
+//    } */
+// },
+
+// {
+//   label: "步数",
+//   path: '/step',
+//   name: 'step',
+//   id: "2",
+//   component: Layout,
+//   redirect: "/step/step-list",
+//   meta: { title: '运动' },
+//   children: [{
+//     id: "2-1",
+//     label: "运动步数列表",
+//     path: "step-list",
+//     name: "step-list",
+//     meta: {
+//       title: "运动步数列表"
+//     },
+//     component: () => import("@/views/step/list/index")
+//   }]
+// },
 
 
 
@@ -299,3 +324,5 @@ export function resetRouter() {
 }
 
 export default router
+
+
